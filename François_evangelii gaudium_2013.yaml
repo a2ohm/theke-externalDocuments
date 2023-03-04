@@ -1,0 +1,58 @@
+name: Evangelii gaudium
+shortname: EG
+lang: FR
+type: adhortatio apostolica
+
+edition:
+    name: Libreria Editrice Vaticana
+    shortname: Libreria Editrice Vaticana
+uri: https://www.vatican.va/content/francesco/fr/apost_exhortations/documents/papa-francesco_esortazione-ap_20131124_evangelii-gaudium.html
+
+author: François
+publication: 2013/11/24
+
+description: >
+    Exhortation apostolique
+    Evangelii gaudium
+    du pape François
+    aux évêques
+    aux prêtres et aux diacres
+    aux personnes consacrées
+    et à tout les fidèles laïcs
+    sur l'annonce de l'Évangile
+    dans le monde d'aujourd'hui
+
+version: 1
+
+cleaning_rules:
+    api_version: 2
+    content:
+      selector: .documento .testo
+      
+    remove:
+      - table
+
+    layouts:
+      - name: header
+        options:
+          selector: p[align=center]:nth-child(2)
+        
+      - name: h2
+        options:
+          selector: p[align=center] > b
+
+      - name: h3
+        options:
+          selector: p > b
+      
+      - name: h4
+        options:
+          selector: p > i
+          strict: True
+
+      - name: p
+        options:
+          selector: p
+          numbering:
+            pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+            class: paragraph_number

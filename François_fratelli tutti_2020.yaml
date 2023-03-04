@@ -1,0 +1,50 @@
+name: Fratelli tutti
+shortname: FT
+lang: FR
+type: litteræ encyclicæ
+
+edition:
+    name: Libreria Editrice Vaticana
+    shortname: Libreria Editrice Vaticana
+uri: https://www.vatican.va/content/francesco/fr/encyclicals/documents/papa-francesco_20201003_enciclica-fratelli-tutti.html
+
+author: François
+publication: 2020/10/03
+
+description: >
+    Lettre encyclique
+    Fratelli tutti
+    du Saint-Père François
+    sur la fraternité et l'amitié sociale
+
+version: 1
+
+cleaning_rules:
+    api_version: 2
+    content:
+      selector: .documento .testo
+
+    layouts:
+      - name: header
+        options:
+          selector: p[align=center]:first-child
+        
+      - name: h2
+        options:
+          selector: p[align=center] > b
+
+      - name: h3
+        options:
+          selector: p > b
+      
+      - name: h4
+        options:
+          selector: p > i
+          strict: True
+
+      - name: p
+        options:
+          selector: p
+          numbering:
+            pattern: ^(?P<number>\d+)\s?(?P<text>.*)
+            class: paragraph_number
