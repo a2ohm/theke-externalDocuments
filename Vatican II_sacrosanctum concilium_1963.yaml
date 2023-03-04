@@ -1,0 +1,46 @@
+name: Sacrosanctum Concilium
+shortname: SC
+lang: FR
+type: constitutio dogmatica
+
+edition:
+    name: Libreria Editrice Vaticana
+    shortname: Libreria Editrice Vaticana
+uri: https://www.vatican.va/archive/hist_councils/ii_vatican_council/documents/vat-ii_const_19631204_sacrosanctum-concilium_fr.html
+
+author: Vatican II
+publication: 1963/12/04
+
+description: >
+    Constitution sur la Saint liturgie
+    Sacrosanctum Concilium
+
+version: 1
+
+cleaning_rules:
+  api_version: 2
+  content:
+    selector: table:nth-child(2)
+    
+  remove:
+    - p[align=right]
+
+  layouts:
+    - name: h2
+      options:
+        selector: "p[align=center] > b"
+        
+    - name: h3
+      options:
+        selector: "p[align=left] > b > i"
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number
+          
+    - name: header
+      options:
+        selector: p[align=center] > font
+
+    - name: p
+      options:
+        selector: p
