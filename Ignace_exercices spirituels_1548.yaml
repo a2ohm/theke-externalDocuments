@@ -1,0 +1,16 @@
+name: Exercices spirituels
+shortname: ES
+lang: FR
+type: spirituality
+edition:
+    name: Édition libre de tout droit
+    shortname: Édition libre de tout droit
+uri: https://livres-mystiques.com/partieTEXTES/Exercices_Ignace/exercices.html
+
+author: Ignace de Loyola
+publication: 1548
+    
+description: >
+    Exercices spirituels de saint Ignace de Loyola
+
+version: 1
