@@ -27,7 +27,7 @@ description: >
 version: 1
 
 cleaning_rules:
-    version: 1
+    api_version: 2
     content:
         selector: div.documento div.text:nth-child(2)
 
@@ -35,12 +35,17 @@ cleaning_rules:
         - p[align=center]:has(:not(b))
 
     layouts:
-        h2:
-            selector: p[align=center]:has(b)
-        h3:
-            selector: p:has(b)
-        p:
+        - name: h2
+          options:
+            selector: p[align=center] > b
+
+        - name: h3
+          options:
+            selector: p > b
+
+        - name: p
+          options:
             selector: p
             numbering:
-                pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-                class: paragraph_number
+              pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+              class: paragraph_number

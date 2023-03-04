@@ -16,25 +16,21 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: div[class=Section1]
   
   remove:
     - h1
-    - p:nth-child(1)
     - p[align=center]
     - p[class=MsoToc1]
     - p[class=MsoToc2]
-  
-  unwrap:
-    - table
-    - tbody
-    - tr
-    - td
 
   layouts:
-    h2:
-      selector: h2
-    p:
-      selector: p
+    - name: h2
+      options:
+        selector: h2
+
+    - name: p
+      options:
+        selector: p

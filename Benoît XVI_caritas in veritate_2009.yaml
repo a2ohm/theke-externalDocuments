@@ -24,7 +24,7 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: div#Text
     
@@ -33,12 +33,17 @@ cleaning_rules:
     - h2:first-child
 
   layouts:
-    h2:
-      selector: h2
-    h3:
-      selector: h3
-    p:
-      selector: div[class=paragraphe]
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    - name: h2
+      options:
+        selector: h2
+
+    - name: h3
+      options:
+        selector: h3
+
+    - name: p
+      options:
+        selector: div[class=paragraphe]
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number

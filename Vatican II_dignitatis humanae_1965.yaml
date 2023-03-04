@@ -18,16 +18,32 @@ description: >
 version: 1
 
 cleaning_rules:
-    version: 1
-    content:
-        selector: td[align=left]
+  api_version: 2
+  content:
+    selector: td[align=left]
 
-    remove:
-        - p[align=center]:has(:not(b))
-        - p[align=right]:first-child
+  remove:
+    - p[align=center]:has(:not(b))
+    - p[align=right]:first-child
+  
+  unwrap:
+    - p[align=center] b i
 
-    layouts:
-        h2:
-            selector: p[align=center]:has(b)
-        h3:
-            selector: p:has(b)
+  layouts:
+    - name: h2
+      options:
+        selector: p[align=center] b
+
+    - name: h3
+      options:
+        selector: p > b > i
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number
+
+    - name: p
+      options:
+        selector: p
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number

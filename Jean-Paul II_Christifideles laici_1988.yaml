@@ -23,19 +23,22 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: div.container
 
   layouts:
-    h2:
-      selector: center p:has(b)
-    h3:
-      selectors:
-        - "p:has(> b i)"
-        - "p:has(> i b)"
-    p:
-      selector: p
+    - name: h2
+      options:
+        selector: center p:has(b)
+    - name: h3
+      options:
+        selectors:
+          - "p:has(> b i)"
+          - "p:has(> i b)"
+    - name: p
+      options:
+        selector: p
       numbering:
         pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
         class: paragraph_number

@@ -22,28 +22,36 @@ description: >
     de l'enseignement moral de l'Église.
 
 version: 1
-
+        
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
-    selector: div[class=documento] div[class=testo]
-    
-  remove:
-    - center
+    selector: .documento .testo
   
   unwrap:
     - font
     - a
-
+    
   layouts:
-    h2:
-      selector: p[align=center]:has(strong)
-    h3:
-      selector: p:has(> strong:only-child)
-    h4:
-      selector: p:has(> i:first-child > strong:only-child)
-    p:
-      selector: p
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    - name: header
+      options:
+        selector: center
+        
+    - name: h2
+      options:
+        selector: p[align=center] strong
+    
+    - name: h3
+      options:
+        selector: p > strong:only-child
+    
+    - name: h4
+      options:
+        selector: p > i:first-child > strong:only-child
+    
+    - name: p
+      options:
+        selector: p
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number

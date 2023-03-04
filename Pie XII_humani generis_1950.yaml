@@ -21,7 +21,7 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: div[class=documento] div[class=testo]
     
@@ -32,5 +32,6 @@ cleaning_rules:
     - font
 
   layouts:
-    p:
-      selector: p
+    - name: p
+      options:
+        selector: p

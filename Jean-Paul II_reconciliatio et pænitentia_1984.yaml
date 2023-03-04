@@ -26,7 +26,7 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: div[class=documento] div[class=testo]
     
@@ -37,13 +37,22 @@ cleaning_rules:
     - font
 
   layouts:
-    h2:
-      selector: "center"
-    h3:
-      selector: p:has(> i > b)
-    p:
-      selector: p
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    - name: h3
+      options:
+        selector: center p b
+
+    - name: h4
+      options:
+        selector: p > i > b
+  
+    - name: h2
+      options:
+        selector: p b:only-of-type
+    
+    - name: p
+      options:
+        selector: p
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number
       

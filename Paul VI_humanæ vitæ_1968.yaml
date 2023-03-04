@@ -19,23 +19,30 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
-    selector: div[class=documento] div[class=testo]
+    selector: .documento .testo
     
-  remove:
-    - p[align=center]:nth-child(-n+2)
-  
   unwrap:
     - font
-
+    
   layouts:
-    h2:
-      selector: "p[align=center]"
-    h3:
-      selector: "p[align=left]:has(i)"
-    p:
-      selector: p
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    - name: header
+      options:
+        selector: p[align=center]:first-child
+
+    - name: h2
+      options:
+        selector: p[align=center]
+    
+    - name: h4
+      options:
+        selector: p font > i
+        strict: True
+    
+    - name: p
+      options:
+        selector: p
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number

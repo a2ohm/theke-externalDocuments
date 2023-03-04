@@ -20,3 +20,32 @@ description: >
     maison commune
 
 version: 1
+
+cleaning_rules:
+  api_version: 2
+  content:
+    selector: .documento .testo
+    
+  remove:
+    - center
+  
+  unwrap:
+    - font
+    - a
+
+  layouts:
+    - name: h2
+      options:
+        selector: p[align=center]
+        
+    - name: h3
+      options:
+        selector: p > i
+        strict: True
+        
+    - name: p
+      options:
+        selector: p
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number

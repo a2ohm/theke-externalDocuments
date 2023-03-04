@@ -6,7 +6,7 @@ type: litteræ encyclicæ
 edition:
     name: Libreria Editrice Vaticana
     shortname: Libreria Editrice Vaticana
-uri: https://www.vatican.va/content/paul-vi/fr/encyclicals/documents/hf_p-vi_enc_26031967_populorum.html
+uri: https://www.doctrine-sociale-catholique.fr/les-textes-officiels/204-populorum-progressio
 
 author: Paul VI
 publication: 1967/03/26
@@ -17,3 +17,30 @@ description: >
     sur le développement des peuples
 
 version: 1
+
+cleaning_rules:
+  api_version: 2
+  content:
+    selector: div#Text
+    
+  remove:
+    - h2:first-child
+  
+  unwrap:
+    - font
+
+  layouts:
+    - name: h2
+      options:
+        selector: h2
+
+    - name: h3
+      options:
+        selector: h3
+        
+    - name: p
+      options:
+        selector: div[class=paragraphe]
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number

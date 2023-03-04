@@ -26,22 +26,25 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
-  content:
-    selector: div[class=documento] div[class=testo]
-    
-  remove:
-    - center:nth-child(-n+1)
-  
-  unwrap:
-    - font
-
-  layouts:
-    h2:
-      selector: "center"
-    p:
-      selector: p
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    api_version: 2
+    content:
+      selector: .documento .testo
       
+    remove:
+      - table
+
+    layouts:
+      - name: header
+        options:
+          selector: center:first-child
+        
+      - name: h2
+        options:
+          selector: center
+
+      - name: p
+        options:
+          selector: p
+          numbering:
+            pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+            class: paragraph_number

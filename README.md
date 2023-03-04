@@ -49,21 +49,24 @@ Voici un exemple de règles.
 
 ```
 cleaning_rules:
-    version: 1
-    content:
-        selector: div.documento div.text:nth-child(2)
+  api_version: 2
+  content:
+    selector: div.documento div.text:nth-child(2)
 
-    remove:
-        - p[align=center]:has(:not(b))
+  remove:
+    - p[align=center]:has(:not(b))
 
-    layouts:
-        h2:
-            selector: p[align=center]:has(b)
-        h3:
-            selector: p:has(b)
+  layouts:
+    - name: h2
+      options:
+        selector: p[align=center]:has(b)
+
+    - name: h3
+      options:
+        selector: p:has(b)
 ```
 
-* `version` : numéro de version de l'API (pour le moment 1).
+* `api_version` : numéro de version de l'API (pour le moment 2 depuis Theke v0.8).
 * `content` (obligatoire) : désigne le contenu du document.
 * `remove` : liste de balises à supprimer.
 * `layouts` : règles permettant d'identifier les éléments structurants du document.

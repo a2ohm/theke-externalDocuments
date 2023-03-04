@@ -20,10 +20,13 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: table:nth-child(2) td[valign=top]
   
+  remove:
+    - img
+
   unwrap:
     - table
     - tbody
@@ -31,7 +34,14 @@ cleaning_rules:
     - td
 
   layouts:
-    h3:
-      selector: "p:has(> b i)"
-    p:
-      selector: p
+    - name: h2
+      options:
+        selector: p[align=center] b
+
+    - name: h3
+      options:
+        selector: "p:has(> b i)"
+  
+    - name: p
+      options:
+        selector: p

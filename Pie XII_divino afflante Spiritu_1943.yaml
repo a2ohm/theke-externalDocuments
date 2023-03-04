@@ -17,21 +17,23 @@ description: >
     sur les études bibliques
 
 version: 1
-
+        
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
-    selector: div[class=documento] div[class=testo]
-    
-  remove:
-    - p[align=center]
+    selector: .documento .testo
   
   unwrap:
     - font
-
+    
   layouts:
-    p:
-      selector: p
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    - name: header
+      options:
+        selector: p[align=center]:first-child
+    
+    - name: p
+      options:
+        selector: p
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number

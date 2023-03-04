@@ -19,12 +19,14 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: div.documento div.testo
 
   remove:
     - p[align=center]
+
   layouts:
-    p:
-      selector: p
+    - name: p
+      options:
+        selector: p

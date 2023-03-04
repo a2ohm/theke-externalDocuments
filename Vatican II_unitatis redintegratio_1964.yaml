@@ -18,33 +18,40 @@ description: >
 version: 1
 
 cleaning_rules:
-  version: 1
+  api_version: 2
   content:
     selector: table:nth-child(2)
     
   remove:
     - p[align=right]
     - p[align=center]:nth-child(-n+2)
-  
-  unwrap:
-    - table
-    - tbody
-    - tr
-    - td
 
   layouts:
-    h2:
-      selector: "p[align=center]:has(b)"
-    h3:
-      selectors:
-        - "p[align=left]:has(> b > i)"
-        - "p[align=left]:has(> b)"
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    - name: header
+      options:
+        selectors:
+          - p[align=center] > font
+
+    - name: h2
+      options:
+        selector: "p[align=center]> b"
+    
+    - name: h3
+      options:
+        selectors:
+          - "p[align=left] > b:only-child"
+
+    - name: h4
+      options:
+        selectors:
+          - "p[align=left] > b:only-child > i"
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number
       
-    p:
-      selector: p
-      numbering:
-        pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
-        class: paragraph_number
+    - name: p
+      options:
+        selector: p
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number
