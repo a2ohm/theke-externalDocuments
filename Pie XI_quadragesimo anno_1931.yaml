@@ -1,0 +1,58 @@
+name: Quadragesimo anno
+shortname: QA
+lang: FR
+type: litteræ encyclicæ
+
+edition:
+    name: Libreria Editrice Vaticana
+    shortname: Libreria Editrice Vaticana
+uri: https://www.doctrine-sociale-catholique.fr/les-textes-officiels/196-quadragesimo-anno
+
+author: Pie XI
+publication: 1931/05/15
+    
+description: >
+    Lettre encyclique de sa sainteté Pie XI par la Divine Providence pape,
+    aux patriarches, primats, archevêques, évêques et autres ordinaires en paix et communion avec le Siège apostolique,
+    ainsi qu’aux fidèles de l’univers catholique tout entier,
+    sur l’instauration de l’ordre social,
+    en pleine conformité avec les préceptes de l’Évangile,
+    à l’occasion du 40e anniversaire de l’encyclique Rerum novarum
+
+version: 1
+
+cleaning_rules:
+  api_version: 2
+  content:
+    selector: div#Text
+    
+  remove:
+    - h2:first-child
+  
+  unwrap:
+    - font
+
+  layouts:
+    - name: header
+      options:
+        selector: div.adresse
+
+    - name: h2
+      options:
+        selector: h2
+
+    - name: h3
+      options:
+        selector: h3
+    
+    - name: h4
+      options:
+        selector: div[class=paragraphe] > em
+        strict: True
+        
+    - name: p
+      options:
+        selector: div[class=paragraphe]
+        numbering:
+          pattern: ^(?P<number>\d+)\.\s?(?P<text>.*)
+          class: paragraph_number
